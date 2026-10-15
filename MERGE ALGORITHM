@@ -1,0 +1,18 @@
+4. Merge Sort
+
+Algorithm: 
+
+MergeSort(arr, left, right)
+Step 1: Start
+Step 2: If left < right:
+2.1: mid = left + (right - left) / 2
+2.2: MergeSort(arr, left, mid)
+2.3: MergeSort(arr, mid + 1, right)
+2.4: Merge(arr, left, mid, right)
+Step 3: Exit / Stop
+
+Time Complexities:
+
+Best Case: O(n \log n)
+Average Case: O(n \log n)
+Worst Case: O(n \log n)
