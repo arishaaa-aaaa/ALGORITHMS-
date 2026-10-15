@@ -1,0 +1,21 @@
+Insertion Sort
+
+Algorithm: 
+
+InsertionSort(arr, n)
+Step 1: Start
+Step 2: Repeat for i = 1 to n - 1:
+2.1: Set key = arr[i]
+2.2: Set j = i - 1
+2.3: Repeat while j >= 0 and arr[j] > key:
+2.3.1: arr[j + 1] = arr[j]
+2.3.2: j--
+2.4: arr[j + 1] = key
+Step 3: Exit / Stop
+
+
+Time Complexities:
+
+Best Case: O(n)
+Average Case: O(n^2)
+Worst Case: O(n^2)
