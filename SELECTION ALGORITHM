@@ -1,0 +1,18 @@
+2. Selection Sort
+
+Algorithm:
+
+SelectionSort(arr, n)
+Step 1: Start
+Step 2: Repeat for i = 0 to n - 2:
+2.1: min_index = i
+2.2: Repeat for j = i + 1 to n - 1:
+2.2.1: If arr[j] < arr[min_index], then min_index = j
+2.3: If min_index != i, swap arr[i] and arr[min_index]
+Step 3: Exit / Stop
+
+
+Time Complexities:
+Best Case: O(n^2)
+Average Case: O(n^2)
+Worst Case: O(n^2)
