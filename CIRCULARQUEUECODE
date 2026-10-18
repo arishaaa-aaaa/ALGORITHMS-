@@ -1,0 +1,100 @@
+public class RestaurantWaitingQueue {
+    private String[] waitingList;
+    private int front, rear, capacity;
+
+    // Constructor to initialize the waiting list with a fixed table capacity
+    public RestaurantWaitingQueue(int size) {
+        capacity = size;
+        waitingList = new String[capacity];
+        front = -1;
+        rear = -1;
+    }
+
+    // Add a new customer group to the waiting queue (Enqueue)
+    public void addGroup(String groupName) {
+        // Check for Overflow (Waiting area is full)
+        if ((rear + 1) % capacity == front) {
+            System.out.println("Waiting Area Full! Sorry " + groupName + ", please wait.");
+            return;
+        }
+
+        // If this is the very first group arriving
+        if (front == -1) {
+            front = 0;
+            rear = 0;
+        } else {
+            // Move rear circularly
+            rear = (rear + 1) % capacity;
+        }
+
+        waitingList[rear] = groupName;
+        System.out.println("Group '" + groupName + "' added to the waiting list.");
+    }
+
+    // Seat a customer group when a table becomes available (Dequeue)
+    public void seatGroup() {
+        // Check for Underflow (No one is waiting)
+        if (front == -1) {
+            System.out.println("No groups currently waiting in the queue.");
+            return;
+        }
+
+        String seatedGroup = waitingList[front];
+        System.out.println("Table ready! Group '" + seatedGroup + "' has been seated.");
+
+        // If only one group was waiting, reset the queue
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            // Move front circularly
+            front = (front + 1) % capacity;
+        }
+    }
+
+    // Display the current waiting list
+    public void displayQueue() {
+        if (front == -1) {
+            System.out.println("Waiting list is currently empty.");
+            return;
+        }
+
+        System.out.print("Current Waiting Groups: [ ");
+        int i = front;
+        while (true) {
+            System.out.print(waitingList[i] + " ");
+            if (i == rear) {
+                break;
+            }
+            i = (i + 1) % capacity;
+        }
+        System.out.println("]");
+    }
+
+    // Main method to test the scenario
+    public static void main(String[] args) {
+        // Restaurant has a waiting capacity of 3 groups
+        RestaurantWaitingQueue restaurant = new RestaurantWaitingQueue(3);
+
+        // Customers arrive
+        restaurant.addGroup("Ali Family");
+        restaurant.addGroup("Ahmed Friends");
+        restaurant.addGroup("Sara Group");
+
+        restaurant.displayQueue();
+
+        // Two groups get seated
+        System.out.println("\n--- Tables Cleared ---");
+        restaurant.seatGroup(); // Ali Family seated
+        restaurant.seatGroup(); // Ahmed Friends seated
+
+        restaurant.displayQueue();
+
+        // New groups arrive, demonstrating the circular wraparound behavior
+        System.out.println("\n--- New Customers Arrive ---");
+        restaurant.addGroup("Zainab & Co.");
+        restaurant.addGroup("Bilal Family");
+
+        restaurant.displayQueue();
+    }
+}
