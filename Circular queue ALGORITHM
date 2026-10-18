@@ -1,0 +1,32 @@
+
+1. CIRCULAR QUEUE - ENQUEUE ALGORITHM
+
+Algorithm: CircularEnqueue(queue, size, front, rear, element)
+
+Step 1: Start
+Step 2: Check for Overflow:
+        If ((rear + 1) % size == front), then Print "Queue Overflow" and Exit.
+Step 3: Check if queue is empty (first element):
+        If (front == -1), then set front = 0 and rear = 0.
+Step 4: Else, increment rear circularly:
+        rear = (rear + 1) % size.
+Step 5: Insert the element:
+        queue[rear] = element.
+Step 6: Exit / Stop
+
+
+
+2. CIRCULAR QUEUE - DEQUEUE ALGORITHM
+
+Algorithm: CircularDequeue(queue, size, front, rear)
+
+Step 1: Start
+Step 2: Check for Underflow:
+        If (front == -1), then Print "Queue Underflow" and Exit.
+Step 3: Store the element to be deleted:
+        item = queue[front].
+Step 4: Check if it was the last element in the queue:
+        If (front == rear), then set front = -1 and rear = -1.
+Step 5: Else, increment front circularly:
+        front = (front + 1) % size.
+Step 6: Exit / Stop
